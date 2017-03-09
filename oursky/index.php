@@ -19,30 +19,36 @@ require_once(ROOT . '/templates/header.php');
 </div>
 
  <script type="text/javascript">
- var idcounter = 1;
- var index = [];
- var objArr = [];
- var task = [];
- var taskList = [];
- var finTaskID = [];
+  var idcounter = 1;
+  var index = [];
+  var objArr = [];
+  var task = [];
+  var taskList = [];
+  var finTaskID = [];
 
   function addTask() {
     var div = document.getElementById('tasks');
     task[idcounter-1] = document.getElementById('taskInput').value;
-    
     var index = 0;
     var obj = new Timer();
     obj.Interval = 1000;
     obj.Tick = timer_tick;
     var temp = '';
-    taskList[idcounter-1] = '<div class="row">';
-    taskList[idcounter-1] += '<div class="col" font-size="30px">' +  task[idcounter-1] + '</div><div id="timer'+ idcounter +'" class="col" ></div><div id="stop_timer' + idcounter + '"  class="col"><a  onclick="objArr[' + (idcounter-1) + '].Stop()"><img src="image/Group 5.png"></img></a></div><a  onclick="finTask('+ (idcounter-1) +')"><img src="image/Group 4.png"></img></a></div>';
-    taskList[idcounter-1] += '</div>';
+    var temp2 = '';
+    temp = '<div class="row">';
+    temp += '<div class="col" font-size="30px">' +  task[idcounter-1] + '</div><div id="timer'+ idcounter +'" class="col" ></div><div id="stop_timer' + idcounter + '"  class="col"><a  onclick="objArr[' + (idcounter-1) + '].Stop()"><img src="image/Group 5.png"></img></a></div><a  onclick="finTask('+ (idcounter-1) +')"><img src="image/Group 4.png"></img></a></div>';
+    temp += '</div>';
+
+    taskList.push(temp);
 
     for(i = 0; i <idcounter; i++) {
-      if (!(i in finTaskID)) temp += taskList[i];
+      var test = false;
+      for (j = 0; j <=finTaskID.length; j++) {
+        if (i == finTaskID[j]) test = true;
+      }
+      if (!test) temp2 += taskList[i];
     }
-    div.innerHTML = temp;
+    div.innerHTML = temp2;
     obj.Start(idcounter++);
     objArr.push(obj);
   }
@@ -52,16 +58,20 @@ require_once(ROOT . '/templates/header.php');
     var div = document.getElementById('finTasks');
     var divTask = document.getElementById('tasks');
     var temp = '<div class="row">';
-    var target = false;
     var tempTask = '';
     objArr[id].Stop();
     finTaskID.push(id);
     temp += '<div class="col" font-size="30px">' +  task[id] + '</div><div class="col" >'+ document.getElementById("timer" + (id+1)).textContent + '</div>';
     temp += '</div>';
 
-    for(i = 0; i <idcounter; i++) {
-      if (!(i in finTaskID)) tempTask += taskList[i];
+    for(i = 0; i <taskList.length; i++) {
+      var test = false;
+      for (j = 0; j <=finTaskID.length; j++) {
+        if (i == finTaskID[j]) test = true;
+      }
+      if (!test) tempTask += taskList[i];
     }
+
     divTask.innerHTML = tempTask;
     div.innerHTML = div.innerHTML + temp;
 
