@@ -22,20 +22,20 @@
 	}
 	
 	
-	input[type=text] {
-		background-color: #6cadff;
-		vertical-align: middle;
-		color: white;
-	    border: none;
-	    height: 30px;
-	    border-bottom: 2px solid white;
-	}
+	/*input[type=text] {*/
+	/*	background-color: #6cadff;*/
+	/*	vertical-align: middle;*/
+	/*	color: white;*/
+	/*    border: none;*/
+	/*    height: 30px;*/
+	/*    border-bottom: 2px solid white;*/
+	/*}*/
 	
-	input[placeholder] {
-		font-family: OpenSans;
-		font-size: 24px;
-		color: #FFFFFF;
-	}
+	/*input[placeholder] {*/
+	/*	font-family: OpenSans;*/
+	/*	font-size: 24px;*/
+	/*	color: #FFFFFF;*/
+	/*}*/
 	
 	::-webkit-input-placeholder { /* Chrome/Opera/Safari */
 	  color: white;
