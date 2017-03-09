@@ -115,7 +115,7 @@ function timer_tick(id)
  	index[id]  = index[id] + 1;
  	minute =  Math.floor(index[id] / 60);
  	second =  Math.floor(index[id] - minute*60);
- 	document.getElementById("timer" + id).innerHTML = minute + ":" + second;
+ 	document.getElementById("timer" + id).innerHTML = minute + " min " + second + " sec";
  	
  }
  
